@@ -2,7 +2,7 @@
 
 This is a Single Page Application (SPA) that allows users to manage a collection of cars, start races, and view race statistics. The app features car creation, car control, and race management with real-time animations.
 
-## Tecnology stack used 
+## Technology stack used 
 
 * React/Vite, React/Router, React/Redux
 * REST API
