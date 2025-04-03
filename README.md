@@ -9,7 +9,7 @@ This is a Single Page Application (SPA) that allows users to manage a collection
 * JavaScript 
 * HTML/CSS/CSS(Modules)
 
-## Check this link to play the game: 
+## Check this link to play the game: https://mikayyel.github.io/async-race/garage
 
 ## How to run the project locally
 
