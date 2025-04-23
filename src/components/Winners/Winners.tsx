@@ -33,7 +33,7 @@ function Winners() {
 
 				<tbody>
 					{
-						winners.map((winner) => {
+						winners?.map((winner) => {
 							const details = getWinnerDetails(winner)
 
 							return (
