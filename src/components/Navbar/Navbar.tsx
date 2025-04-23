@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { getCars, selectCars, selectPage, selectTotalCars, setPage } from '../../features/Cars/CarsSlice';
-import { selectWinners } from '../../features/Winners/WinnersSlice';
+import { getCars, selectCars, selectPage, selectTotalCars, setPage } from '../../features/Cars/CarsSlice.tsx';
+import { selectWinners } from '../../features/Winners/WinnersSlice.tsx';
 import style from './Navbar.module.css';
 
 function Navbar() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCarToList, getCars, selectSelectedCar, setSelectedCar, updateCarInList } from '../../features/Cars/CarsSlice';
+import { addCarToList, getCars, selectSelectedCar, setSelectedCar, updateCarInList } from '../../features/Cars/CarsSlice.tsx';
 import style from './AddOrUpdateCar.module.css';
 
 function AddOrUpdateCar() {

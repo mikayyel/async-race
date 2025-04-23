@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaCarSide } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { driveCar, startCarEngine, stopCarEngine } from '../../features/Cars/CarsAPI';
-import { createRandomCars, deleteCarFromList, getCars, selectCars, selectError, selectLoading, setSelectedCar } from '../../features/Cars/CarsSlice';
-import { addWinnerToList, getWinners, selectWinners, updateWinnerInList } from '../../features/Winners/WinnersSlice';
+import { driveCar, startCarEngine, stopCarEngine } from '../../features/Cars/CarsAPI.tsx';
+import { createRandomCars, deleteCarFromList, getCars, selectCars, selectError, selectLoading, setSelectedCar } from '../../features/Cars/CarsSlice.tsx';
+import { addWinnerToList, getWinners, selectWinners, updateWinnerInList } from '../../features/Winners/WinnersSlice.tsx';
 import style from './Garage.module.css';
 
 function Garage() {

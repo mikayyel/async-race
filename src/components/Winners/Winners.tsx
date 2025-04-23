@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { FaCarSide } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCars, selectCars } from '../../features/Cars/CarsSlice';
-import { deleteWinner, getWinners, selectWinners } from '../../features/Winners/WinnersSlice';
+import { getCars, selectCars } from '../../features/Cars/CarsSlice.tsx';
+import { deleteWinner, getWinners, selectWinners } from '../../features/Winners/WinnersSlice.tsx';
 import style from './Winners.module.css';
 
 function Winners() {

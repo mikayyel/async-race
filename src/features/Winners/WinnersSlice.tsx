@@ -1,4 +1,4 @@
-import { addWinnerToServer, deleteWinnerFromServer, getWinnersFromServer, updateWinnerOnServer } from './WinnersAPI';
+import { addWinnerToServer, deleteWinnerFromServer, getWinnersFromServer, updateWinnerOnServer } from './WinnersAPI.js';
 
 // Action Types
 const SET_WINNERS = 'SET_WINNERS';
@@ -6,28 +6,17 @@ const ADD_WINNER = 'ADD_WINNER';
 const UPDATE_WINNER = 'UPDATE_WINNER';
 
 // Initial State
-export const initialWinnersState = {
-	winners: [] 
-};
+export const initialWinnersState = [] //
 
 // Reducer Function
 export const WinnersReducer = (state = initialWinnersState, action) => {
 	switch(action.type) {
 		case SET_WINNERS: 
-			return {
-				...state,
-				winners: action.payload
-			}
+			return action.payload; //
 		case ADD_WINNER:
-			return {
-        ...state,
-        winners: [...state.winners.winners, action.payload] 
-    	};
+			return [...state, action.payload]; //
 		case UPDATE_WINNER:
-			return {
-					...state,
-					winners: state.winners.map((winner) => winner.id === action.payload.id ? {...winner, ...action.payload} : winner)
-			};
+			return state.winners.map((winner) => winner.id === action.payload.id ? {...winner, ...action.payload} : winner) //
 		default: 
 			return state;
 	}
@@ -35,7 +24,7 @@ export const WinnersReducer = (state = initialWinnersState, action) => {
 }
 
 // Selectors
-export const selectWinners = (state) => state.winners.winners || [];
+export const selectWinners = (state) => state.winners || []; //
 
 // Action Creators 
 export const setWinners = (winners) => ({

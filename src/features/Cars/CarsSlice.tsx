@@ -1,5 +1,5 @@
-import { addCarToServer, deleteCarFromServer, getCarsFromServer, updateCarOnServer } from './CarsAPI';
-import { getRandomCarName, getRandomColor } from './RandomCarsHelper';
+import { addCarToServer, deleteCarFromServer, getCarsFromServer, updateCarOnServer } from './CarsAPI.js';
+import { getRandomCarName, getRandomColor } from './RandomCarsHelper.js';
 
 // Action Types
 const SET_CARS = 'SET_CARS';

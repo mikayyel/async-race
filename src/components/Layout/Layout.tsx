@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import AddOrUpdateCar from '../AddOrUpdateCar/AddOrUpdateCar';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/Navbar.tsx';
 import style from './Layout.module.css';
 
 function Layout() {

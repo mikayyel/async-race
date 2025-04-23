@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router';
 import Garage from './components/Garage/Garage';
-import Layout from './components/Layout/Layout';
-import Winners from './components/Winners/Winners';
+import Layout from './components/Layout/Layout.tsx';
+import Winners from './components/Winners/Winners.tsx';
 
 function App() {
 	return (
