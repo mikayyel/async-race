@@ -1,10 +1,15 @@
-import { addCarToServer, deleteCarFromServer, getCarsFromServer, updateCarOnServer } from './CarsAPI.js';
+import {
+  addCarToServer,
+  deleteCarFromServer,
+  getCarsFromServer,
+  updateCarOnServer,
+} from './CarsAPI.js';
 import { getRandomCarName, getRandomColor } from './RandomCarsHelper.js';
 
 // Action Types
 const SET_CARS = 'SET_CARS';
-const SET_TOTAL_CARS = 'SET_TOTAL_CARS'; 
-const SET_PAGE = 'SET_PAGE'; 
+const SET_TOTAL_CARS = 'SET_TOTAL_CARS';
+const SET_PAGE = 'SET_PAGE';
 const ADD_CAR = 'ADD_CAR';
 const REMOVE_CAR = 'REMOVE_CAR';
 const UPDATE_CAR = 'UPDATE_CAR';
@@ -12,13 +17,12 @@ const SET_SELECTED_CAR = 'SET_SELECTED_CAR';
 const SET_CARS_LOADING = 'SET_CARS_LOADING';
 const SET_CARS_ERROR = 'SET_CARS_ERROR';
 
-
 // Initial State
 export const initialCarsState = {
   cars: [],
-  totalCars: 0, 
-  page: 1,      
-  limit: 7,     
+  totalCars: 0,
+  page: 1,
+  limit: 7,
   loading: false,
   error: null,
 };
@@ -30,42 +34,42 @@ export const CarsReducer = (state = initialCarsState, action) => {
       return {
         ...state,
         cars: action.payload.cars,
-        totalCars: action.payload.totalCars, 
+        totalCars: action.payload.totalCars,
         loading: false,
-      }; 
+      };
     case SET_TOTAL_CARS:
       return {
         ...state,
         totalCars: action.payload,
-      }; 
+      };
     case SET_PAGE:
       return {
         ...state,
         page: action.payload,
-      }; 
-		case ADD_CAR: {
-			return {
-        ...state,
-        cars: [...state.cars, action.payload], 
-        totalCars: state.cars.length + 1, 
       };
-		}
+    case ADD_CAR: {
+      return {
+        ...state,
+        cars: [...state.cars, action.payload],
+        totalCars: state.cars.length + 1,
+      };
+    }
     case REMOVE_CAR:
-			return {
-				...state,
-				cars: state.cars.filter((car) => car.id !== action.payload)
-			}
-		case UPDATE_CAR:  
-			return {
-				...state,
-				cars: state.cars.map((car) => (
-					car.id === action.payload.id ? { ...car, ...action.payload } : car
-        )),
-			};
+      return {
+        ...state,
+        cars: state.cars.filter((car) => car.id !== action.payload),
+      };
+    case UPDATE_CAR:
+      return {
+        ...state,
+        cars: state.cars.map((car) =>
+          car.id === action.payload.id ? { ...car, ...action.payload } : car
+        ),
+      };
     case SET_SELECTED_CAR:
       return {
         ...state,
-        selectedCar: action.payload,  
+        selectedCar: action.payload,
       };
     case SET_CARS_LOADING:
       return {
@@ -93,7 +97,6 @@ export const selectTotalPages = (state) => Math.ceil(state.cars.totalCars / stat
 export const selectLoading = (state) => state.cars.loading;
 export const selectError = (state) => state.cars.error;
 
-
 // Action Creators
 export const setCars = (cars) => ({
   type: SET_CARS,
@@ -108,12 +111,12 @@ export const setTotalCars = (total) => ({
 export const setPage = (page) => ({
   type: SET_PAGE,
   payload: page,
-}); 
+});
 
 export const addCar = (car) => ({
-	type: ADD_CAR,
-	payload: car
-})
+  type: ADD_CAR,
+  payload: car,
+});
 
 export const removeCar = (id) => ({
   type: REMOVE_CAR,
@@ -157,38 +160,12 @@ export const getCars = (page = 1, limit = 7) => {
 export const deleteCarFromList = (id) => {
   return (dispatch, getState) => {
     const { page, limit } = getState().cars;
-    deleteCarFromServer(id) 
+    deleteCarFromServer(id)
       .then(() => {
-        dispatch(removeCar(id)); 
+        dispatch(removeCar(id));
         const newPage = page > 1 && getState().cars.cars.length === 0 ? page - 1 : page;
-        dispatch(setPage(newPage)); 
-        dispatch(getCars(newPage, limit)); 
-      })
-      .catch((error) => {
-        dispatch(setCarsError(error.message)); 
-      });
-  };
-};
-
-// Thunk for adding a new car to the server
-export const addCarToList = (car) => {
-	return (dispatch) => {
-		addCarToServer(car)
-			.then((data) => {
-				dispatch(addCar(data))
-			})
-			.catch((error) => {
-        dispatch(setCarsError(error.message)); 
-      });
-	}
-}
-
-// Thunk for updating the car in the server
-export const updateCarInList = (car) => {
-  return (dispatch) => {
-    updateCarOnServer(car) 
-      .then((data) => {
-        dispatch(updateCar(data)); 
+        dispatch(setPage(newPage));
+        dispatch(getCars(newPage, limit));
       })
       .catch((error) => {
         dispatch(setCarsError(error.message));
@@ -196,7 +173,33 @@ export const updateCarInList = (car) => {
   };
 };
 
-// 
+// Thunk for adding a new car to the server
+export const addCarToList = (car) => {
+  return (dispatch) => {
+    addCarToServer(car)
+      .then((data) => {
+        dispatch(addCar(data));
+      })
+      .catch((error) => {
+        dispatch(setCarsError(error.message));
+      });
+  };
+};
+
+// Thunk for updating the car in the server
+export const updateCarInList = (car) => {
+  return (dispatch) => {
+    updateCarOnServer(car)
+      .then((data) => {
+        dispatch(updateCar(data));
+      })
+      .catch((error) => {
+        dispatch(setCarsError(error.message));
+      });
+  };
+};
+
+//
 export const createRandomCars = () => {
   return async (dispatch, getState) => {
     const cars = [];
@@ -210,13 +213,13 @@ export const createRandomCars = () => {
       const currentPage = getState().cars.page;
 
       for (let car of cars) {
-        const addedCar = await addCarToServer(car); 
-        dispatch(addCar(addedCar)); 
+        const addedCar = await addCarToServer(car);
+        dispatch(addCar(addedCar));
       }
 
       dispatch(getCars(currentPage));
     } catch (error) {
-      console.error("Error adding random cars:", error.message);
+      console.error('Error adding random cars:', error.message);
       dispatch(setCarsError(error.message));
     }
   };

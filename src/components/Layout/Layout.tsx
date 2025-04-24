@@ -4,20 +4,18 @@ import Navbar from '../Navbar/Navbar.tsx';
 import style from './Layout.module.css';
 
 function Layout() {
-	return (
-		<>	
-			<header className={style.header}>
-				<Navbar />
-				<AddOrUpdateCar />
-			</header>
-			<main className={style.main}>
-				<Outlet />
-			</main>
-			<footer>
-
-			</footer>
-		</>	
-	)
+  return (
+    <>
+      <header className={style.header}>
+        <Navbar />
+        <AddOrUpdateCar />
+      </header>
+      <main className={style.main}>
+        <Outlet />
+      </main>
+      <footer></footer>
+    </>
+  );
 }
 
 export default Layout;
